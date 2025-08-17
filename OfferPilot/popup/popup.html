@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfferPilot - 智能简历填充</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">🚀</div>
+                <h1>OfferPilot</h1>
+            </div>
+            <div class="status">
+                <span class="status-dot active"></span>
+                <span class="status-text">已启用</span>
+            </div>
+        </header>
+
+        <div class="section">
+            <div class="section-header">
+                <h3>简历模板</h3>
+                <button class="btn-icon" id="addResumeBtn" title="添加新简历">+</button>
+            </div>
+            <select id="resumeSelector" class="resume-selector">
+                <option value="default">默认简历</option>
+            </select>
+        </div>
+
+        <div class="section">
+            <div class="quick-actions">
+                <button class="btn btn-primary" id="fillFormBtn">
+                    ✓ 智能填充
+                </button>
+                <button class="btn btn-secondary" id="editResumeBtn">
+                    ✏️ 编辑简历
+                </button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="detection-info" id="detectionInfo">
+                <div class="detection-item">
+                    <span class="label">当前网站:</span>
+                    <span class="value" id="currentWebsite">检测中...</span>
+                </div>
+                <div class="detection-item">
+                    <span class="label">适配器:</span>
+                    <span class="value" id="currentAdapter">通用</span>
+                </div>
+                <div class="detection-item">
+                    <span class="label">检测到字段:</span>
+                    <span class="value" id="detectedFields">0</span>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <button class="btn-link" id="optionsBtn">高级设置</button>
+            <button class="btn-link" id="helpBtn">帮助</button>
+        </footer>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

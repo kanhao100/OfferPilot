@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfferPilot Icon Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .icon-preview {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .icon-size {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .download-btn {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .instructions {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions">
+        <h1>OfferPilot 图标生成器</h1>
+        <p>生成OfferPilot扩展需要的各种尺寸图标。</p>
+        <ol>
+            <li>点击对应尺寸的"下载图标"按钮</li>
+            <li>将下载的文件重命名为对应的文件名</li>
+            <li>放置到 icons 文件夹中</li>
+        </ol>
+    </div>
+
+    <div class="icon-preview">
+        <div class="icon-size">
+            <h3>16x16</h3>
+            <canvas id="icon16" width="16" height="16"></canvas>
+            <br>
+            <button class="download-btn" onclick="downloadIcon('icon16', 'icon16.png')">下载图标</button>
+        </div>
+        
+        <div class="icon-size">
+            <h3>32x32</h3>
+            <canvas id="icon32" width="32" height="32"></canvas>
+            <br>
+            <button class="download-btn" onclick="downloadIcon('icon32', 'icon32.png')">下载图标</button>
+        </div>
+        
+        <div class="icon-size">
+            <h3>48x48</h3>
+            <canvas id="icon48" width="48" height="48"></canvas>
+            <br>
+            <button class="download-btn" onclick="downloadIcon('icon48', 'icon48.png')">下载图标</button>
+        </div>
+        
+        <div class="icon-size">
+            <h3>128x128</h3>
+            <canvas id="icon128" width="128" height="128"></canvas>
+            <br>
+            <button class="download-btn" onclick="downloadIcon('icon128', 'icon128.png')">下载图标</button>
+        </div>
+    </div>
+
+    <script>
+        function drawIcon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#3b82f6');
+            gradient.addColorStop(1, '#1e40af');
+            
+            // Draw rounded rectangle background
+            const cornerRadius = size * 0.15;
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, cornerRadius);
+            ctx.fill();
+            
+            // Draw rocket icon (simplified)
+            ctx.fillStyle = 'white';
+            
+            // Rocket body
+            const rocketWidth = size * 0.3;
+            const rocketHeight = size * 0.6;
+            const rocketX = (size - rocketWidth) / 2;
+            const rocketY = (size - rocketHeight) / 2;
+            
+            ctx.fillRect(rocketX, rocketY, rocketWidth, rocketHeight);
+            
+            // Rocket tip
+            ctx.beginPath();
+            ctx.moveTo(rocketX, rocketY);
+            ctx.lineTo(size / 2, rocketY - size * 0.1);
+            ctx.lineTo(rocketX + rocketWidth, rocketY);
+            ctx.fill();
+            
+            // Rocket flames
+            ctx.fillStyle = '#fbbf24';
+            const flameY = rocketY + rocketHeight;
+            ctx.beginPath();
+            ctx.moveTo(rocketX + rocketWidth * 0.2, flameY);
+            ctx.lineTo(size / 2, flameY + size * 0.15);
+            ctx.lineTo(rocketX + rocketWidth * 0.8, flameY);
+            ctx.fill();
+        }
+        
+        // Canvas roundRect polyfill
+        if (!CanvasRenderingContext2D.prototype.roundRect) {
+            CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radius) {
+                this.beginPath();
+                this.moveTo(x + radius, y);
+                this.lineTo(x + width - radius, y);
+                this.quadraticCurveTo(x + width, y, x + width, y + radius);
+                this.lineTo(x + width, y + height - radius);
+                this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                this.lineTo(x + radius, y + height);
+                this.quadraticCurveTo(x, y + height, x, y + height - radius);
+                this.lineTo(x, y + radius);
+                this.quadraticCurveTo(x, y, x + radius, y);
+                this.closePath();
+            };
+        }
+        
+        function downloadIcon(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // Draw all icons on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            drawIcon('icon16', 16);
+            drawIcon('icon32', 32);
+            drawIcon('icon48', 48);
+            drawIcon('icon128', 128);
+        });
+    </script>
+</body>
+</html>

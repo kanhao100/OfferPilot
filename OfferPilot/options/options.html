@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfferPilot - 设置</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">🚀</div>
+                <div>
+                    <h1>OfferPilot 设置</h1>
+                    <p>管理您的简历模板和插件配置</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="section">
+                <h2>简历信息</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>姓名</label>
+                        <input type="text" id="firstName" placeholder="名">
+                    </div>
+                    <div class="form-group">
+                        <label>姓氏</label>
+                        <input type="text" id="lastName" placeholder="姓">
+                    </div>
+                    <div class="form-group">
+                        <label>邮箱</label>
+                        <input type="email" id="email" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>电话</label>
+                        <input type="tel" id="phone" placeholder="手机号码">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>地址</label>
+                        <input type="text" id="address" placeholder="详细地址">
+                    </div>
+                    <div class="form-group">
+                        <label>城市</label>
+                        <input type="text" id="city" placeholder="城市">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>技能</label>
+                        <textarea id="skills" placeholder="请输入技能，用逗号分隔" rows="3"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-primary" id="saveBtn">保存设置</button>
+                    <button class="btn btn-secondary" id="resetBtn">重置</button>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>关于 OfferPilot</h2>
+                <div class="about-info">
+                    <p>OfferPilot v1.0.0 - 智能简历填充工具</p>
+                    <p>让求职申请变得更简单高效！</p>
+                    <div class="links">
+                        <a href="https://github.com/kanhao100/OfferPilot" target="_blank">GitHub</a>
+                        <a href="https://github.com/kanhao100/OfferPilot/issues" target="_blank">报告问题</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="options.js"></script>
+</body>
+</html>
